@@ -7,5 +7,6 @@ bool inputCheck(List<dynamic> chunks) {
 }
 
 bool outputCheck(Uint8List script) {
+  throw Exception('Unimplemented');
   // TODO
 }

@@ -31,7 +31,7 @@ constructSign(f, TransactionBuilder txb) {
   return txb;
 }
 
-TransactionBuilder construct(f, [bool dontSign]) {
+TransactionBuilder construct(f, [bool? dontSign]) {
   final network = NETWORKS[f['network']];
   final txb = new TransactionBuilder(network: network);
   if (f['version'] != null) txb.setVersion(f['version']);
@@ -70,8 +70,8 @@ main() {
       new File('test/fixtures/transaction_builder.json')
           .readAsStringSync(encoding: utf8));
   group('TransactionBuilder', () {
-    final keyPair = ECPair.fromPrivateKey(HEX.decode(
-        '0000000000000000000000000000000000000000000000000000000000000001'));
+    final keyPair = ECPair.fromPrivateKey(Uint8List.fromList(HEX.decode(
+        '0000000000000000000000000000000000000000000000000000000000000001')));
     final scripts = [
       '1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH',
       '1cMh228HTCiwS8ZsaakH8A8wze1JR5ZsP'
@@ -109,11 +109,11 @@ main() {
           final txAfter = f['incomplete'] ? txb.buildIncomplete() : txb.build();
 
           for (var i = 0; i < txAfter.ins.length; i++) {
-            test(bscript.toASM(txAfter.ins[i].script),
+            test(bscript.toASM(txAfter.ins[i].script!),
                 f['inputs'][i]['scriptSigAfter']);
           }
           for (var i = 0; i < txAfter.outs.length; i++) {
-            test(bscript.toASM(txAfter.outs[i].script),
+            test(bscript.toASM(txAfter.outs[i].script!),
                 f['outputs'][i]['script']);
           }
         });
@@ -131,7 +131,7 @@ main() {
         });
     });
     group('addInput', () {
-      TransactionBuilder txb;
+      late TransactionBuilder txb;
       setUp(() {
         txb = new TransactionBuilder();
       });
@@ -186,7 +186,7 @@ main() {
       });
     });
     group('addOutput', () {
-      TransactionBuilder txb;
+      late TransactionBuilder txb;
       setUp(() {
         txb = new TransactionBuilder();
       });
@@ -260,9 +260,9 @@ main() {
       });
     });
     group('addOutputData', () {
-      TransactionBuilder txb;
-      String data;
-      String data2;
+      late TransactionBuilder txb;
+      late String data;
+      late String data2;
       setUp(() {
         txb = new TransactionBuilder();
         data = 'Hey this is a random string without Bitcoins.';

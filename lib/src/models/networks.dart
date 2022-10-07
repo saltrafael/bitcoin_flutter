@@ -9,12 +9,13 @@ class NetworkType {
   int wif;
 
   NetworkType(
-      {@required this.messagePrefix,
-      this.bech32,
-      @required this.bip32,
-      @required this.pubKeyHash,
-      @required this.scriptHash,
-      @required this.wif});
+      {required this.messagePrefix,
+      String? bech32,
+      required this.bip32,
+      required this.pubKeyHash,
+      required this.scriptHash,
+      required this.wif})
+      : this.bech32 = bech32 ?? '';
 
   @override
   String toString() {
@@ -26,7 +27,7 @@ class Bip32Type {
   int public;
   int private;
 
-  Bip32Type({@required this.public, @required this.private});
+  Bip32Type({required this.public, required this.private});
 
   @override
   String toString() {
