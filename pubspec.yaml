@@ -16,7 +16,7 @@ dependencies:
   bech32:
     git:
       url: https://github.com/cake-tech/bech32.git
-      ref: cake-0.2.1
+      ref: cake-0.2.2
 
 dev_dependencies:
   test: ^1.21.1
