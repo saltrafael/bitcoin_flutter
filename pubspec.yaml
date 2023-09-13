@@ -5,7 +5,7 @@ homepage: https://github.com/anicdh
 publish_to: none
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   bip39: ^1.0.6
@@ -17,6 +17,7 @@ dependencies:
     git:
       url: https://github.com/cake-tech/bech32.git
       ref: cake-0.2.2
+  dart_bech32: ^2.0.0
 
 dev_dependencies:
   test: ^1.21.1
