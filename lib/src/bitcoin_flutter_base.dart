@@ -17,6 +17,10 @@ class HDWallet {
   String? seed;
   NetworkType network;
 
+  bip32.BIP32? get privBip32 {
+    return _bip32;
+  }
+
   String? get privKey {
     if (_bip32 == null) return null;
     try {
